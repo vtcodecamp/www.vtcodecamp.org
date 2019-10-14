@@ -84,6 +84,9 @@
       }
     }
   ],
+  "emmet.includeLanguages": {
+    "njk": "html"
+  },
   "cSpell.words": [
     "CLI",
     "CLIs",

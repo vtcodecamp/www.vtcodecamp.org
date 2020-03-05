@@ -1,7 +1,7 @@
 {
-  "name": "2019.vtcodecamp.org",
+  "name": "www.vtcodecamp.org",
   "version": "1.0.0",
-  "description": "VT Code Camp 2019 website",
+  "description": "VT Code Camp website",
   "main": "index.js",
   "dependencies": {
     "clean-css": "^4.2.1",
@@ -21,6 +21,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vtcodecamp/2019.vtcodecamp.org.git"
+    "url": "git+https://github.com/vtcodecamp/www.vtcodecamp.org.git"
   }
 }

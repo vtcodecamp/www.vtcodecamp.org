@@ -14,6 +14,9 @@ function buildSchedule()
         head: [],
         body: [],
     };
+
+    if (isEmpty(speakers) || isEmpty(speakers)) return scheduleTable;
+
     scheduleTable.head.push({ title: 'Time', type: 'timespan' });
     for (let room of Object.values(rooms)) {
         scheduleTable.head.push({
@@ -131,3 +134,7 @@ function getTimeCode(timeString)
     let id = time.replace(':','');
     return parseInt(id);
 }
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0
+  }

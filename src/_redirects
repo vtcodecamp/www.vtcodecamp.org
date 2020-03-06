@@ -3,6 +3,8 @@
 https://archive.vtcodecamp.org/* https://www.vtcodecamp.org/:splat 301!
 
 # Redirect past year paths to subdomains
+/2019/*  https://2019.vtcodecamp.org/:splat
+/2018/*  https://2018.vtcodecamp.org/:splat
 /2017/*  https://2017.vtcodecamp.org/:splat
 /2016/*  https://2016.vtcodecamp.org/:splat
 /2015/*  https://2015.vtcodecamp.org/:splat

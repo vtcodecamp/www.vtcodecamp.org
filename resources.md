@@ -60,6 +60,9 @@ A stash for helpful articles, references, documentation looked up along the way
 
 * [Convet Object to array](https://stackoverflow.com/q/38824349/1366033)
 * [Sort array alphabetically](https://stackoverflow.com/a/45544166/1366033)
+* [Get String in YYYYMMDD format from JS date object?](https://stackoverflow.com/a/32098190/1366033)
+* [MomentJS: how to parse dates in MM/DD/YYYY & DD/MM/YYYY](https://stackoverflow.com/q/44975369/1366033)
+* [MomentJS - formatting docs](https://momentjs.com/docs/#/displaying/format/)
 
 ## Node
 

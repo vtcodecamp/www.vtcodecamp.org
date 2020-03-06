@@ -1,10 +1,10 @@
-# VT Code Camp 2019 Website
+# VT Code Camp Website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ef1b18a7-e5fd-4cb6-aa6e-f37a9a87369b/deploy-status)](https://app.netlify.com/sites/vtcodecamp2019/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ef1b18a7-e5fd-4cb6-aa6e-f37a9a87369b/deploy-status)](https://app.netlify.com/sites/vtcodecamp/deploys)
 
 * **Production site**: `https://www.vtcodecamp.com/`
-* **Deploy Previews**: `https://deploy-preview-{PR#}--vtcodecamp2019.netlify.com/`
-* **Branch Deploys**: `https://{branch-name}--vtcodecamp2019.netlify.com/`
+* **Deploy Previews**: `https://deploy-preview-{PR#}--vtcodecamp.netlify.com/`
+* **Branch Deploys**: `https://{branch-name}--vtcodecamp.netlify.com/`
 
 ## Built With
 

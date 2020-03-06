@@ -1,4 +1,4 @@
-
+const moment = require("moment")
 
 module.exports = function(eleventyConfig) {
 
@@ -26,16 +26,14 @@ module.exports = function(eleventyConfig) {
     });
 
     eleventyConfig.addFilter("to12hourTime", function(timeString) { 
-        let date = new Date(timeString);
-        let time = date.toLocaleTimeString('en-US', {
-            timezone: 'America/New_York',
-            hour12: true,
-            hour: 'numeric',
-            minute: 'numeric',
-        })
-        return time;
+        let formatted = moment(timeString).format("h:mm a")
+        return formatted;
     });
 
+    eleventyConfig.addFilter("toLongDate", function(date) { 
+        let formatted = moment(date, 'MM-DD-YYYY').format("dddd, MMM Do, YYYY")
+        return formatted;
+    });
 
     // set markdown defaults (inline so we can extend)
     let markdownIt = require("markdown-it");

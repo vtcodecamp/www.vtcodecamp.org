@@ -12,7 +12,7 @@ A lot of work goes into the Code Camp event, in the weeks leading up to it and t
 
 Have a suggestion you'd like to see implemented on the website? Awesome! 🎉
 
-We'd love to merge in any Pull Requests that help improve the website's design, accessibility, or documentation.  If you have any ideas but aren't quite sure how to go about them, you can always [Open an Issue](https://github.com/vtcodecamp/2019.vtcodecamp.org/issues) to make a suggestion or ask for help.  We're probably not looking for any huge rewrites and want to balance leveraging potentially helpful technologies with the maintenance burden that comes with added complexity.
+We'd love to merge in any Pull Requests that help improve the website's design, accessibility, or documentation.  If you have any ideas but aren't quite sure how to go about them, you can always [Open an Issue](https://github.com/vtcodecamp/www.vtcodecamp.org/issues) to make a suggestion or ask for help.  We're probably not looking for any huge rewrites and want to balance leveraging potentially helpful technologies with the maintenance burden that comes with added complexity.
 
 That said, feel free to **Submit a PR** and we can always work through any feedback.
 
@@ -45,4 +45,4 @@ If you want to test them out using the same JS we're using internally, you can p
 
 ## Contact Members
 
-For any other questions, comments, or concerns, please feel free to [Open an Issue](https://github.com/vtcodecamp/2019.vtcodecamp.org/issues) or contact the whole team at [team@vtcodecamp.org](mailto:team@vtcodecamp.org)
+For any other questions, comments, or concerns, please feel free to [Open an Issue](https://github.com/vtcodecamp/www.vtcodecamp.org/issues) or contact the whole team at [team@vtcodecamp.org](mailto:team@vtcodecamp.org)

@@ -50,15 +50,21 @@
     
     <nav id="navHeader" class="header">
         <ul id="navButtons" class="nav-buttons">
+
+            {# Lookup 'Fragile Menu Media Query' in 'styles.css'
+               change @media (max-width: xxxpx) breakpoint when nav wraps #}
+
             <li><a href="/" class='code home {{ "active" if "/" == page.url }}'>Home</a></li>
-            {# change @media (max-width: 670px) to 740px when we add schedule back #}
-            <li><a href="/2019/schedule/" class='code {{ "active" if "/schedule/" in page.url }}'>Schedule</a></li>
-            <li><a href="/2019/sessions/" class='code {{ "active" if "/sessions/" in page.url }}'>Sessions</a></li>
-            <li><a href="/2019/speakers/" class='code {{ "active" if "/speakers/" in page.url }}'>Speakers</a></li>
-            <li><a href="/parking/" class='code {{ "active" if "/parking/" in page.url }}'>Parking</a></li>
+            <!--
+            <li><a href="/2020/schedule/" class='code {{ "active" if "/schedule/" in page.url }}'>Schedule</a></li>
+            <li><a href="/2020/sessions/" class='code {{ "active" if "/sessions/" in page.url }}'>Sessions</a></li>
+            <li><a href="/2020/speakers/" class='code {{ "active" if "/speakers/" in page.url }}'>Speakers</a></li>
+            -->
+            <li><a href="/sponsor/" class='code {{ "active" if "/sponsor/" in page.url }}'>Sponsor</a></li>
+            <li><a href="/speak/" class='code {{ "active" if "/speak/" in page.url }}'>Speak</a></li>
+            {# <li><a href="/parking/" class='code {{ "active" if "/parking/" in page.url }}'>Parking</a></li> #}
             <li><a href="/conduct/" class='code {{ "active" if "/conduct/" in page.url }}'>Conduct</a></li>
             <li><a href="/diversity/" class='code {{ "active" if "/diversity/" in page.url }}'>Diversity</a></li>
-            <li><a href="/sponsor/" class='code {{ "active" if "/sponsor/" in page.url }}'>Sponsor</a></li>
         </ul>
         <a href="#footer-nav" id="navToggle" class='nav-toggle' 
            aria-hidden="true" > </a>
@@ -87,18 +93,18 @@
         <ul id="footer-nav" class="nav-links">
             <li><a href="#header">Back to top</a></li>
             <li><a href="/">Home</a></li>
+            <li><a href="/sponsor/">Sponsor</a></li>
+            <li><a href="/speak/">Speak</a></li>
             <li><a href="/conduct/">Conduct</a></li>
             <li><a href="/diversity/">Diversity</a></li>
-            <li><a href="/sponsor/">Sponsor</a></li>
-
-            {# <li><a href="/2019/schedule/">Schedule</a></li> #}
-            <li><a href="/2019/sessions/">Sessions</a></li>
-            <li><a href="/2019/speakers/">Speakers</a></li>
-            <li><a href="/parking/">Parking</a></li>
+            {# <li><a href="/2020/schedule/">Schedule</a></li> #}
+            {# <li><a href="/2020/sessions/">Sessions</a></li> #}
+            {# <li><a href="/2020/speakers/">Speakers</a></li> #}
+            {# <li><a href="/parking/">Parking</a></li> #}
         </ul>
 
         <div class="copy-line">
-            <span class="copyright">&copy; Vermont Code Camp 2019 </span>
+            <span class="copyright">&copy; Vermont Code Camp 2020 </span>
             <span class="d-flex">
                 <a href="https://twitter.com/VTCodeCamp" aria-label="Follow us on Twitter">
                     {% include "assets/fa/twitter.svg" %}

@@ -1,6 +1,6 @@
 ---
 layout: default-layout.njk
-title:  "Sponsor Vermont Code Camp 11"
+title:  "Sponsor Vermont Code Camp 12"
 meta_description: We can’t pull off VT Code Camp without the financial support of our sponsors.
 ---
 
@@ -14,7 +14,7 @@ meta_description: We can’t pull off VT Code Camp without the financial support
 </div>
 
 
-### The 11th annual Vermont Code Camp will be held on <span class="no-wrap">September 28, 2019</span> in Burlington, Vermont.  
+### The 12th annual Vermont Code Camp will be held on <span class="no-wrap">{{config.eventDate | toLongDate}}</span> in Burlington, Vermont.  
 
 This full day event will bring together technology community members, students and professionals from around Vermont and beyond. A wide variety of software technologies will be represented. Session topics typically range from software development (e.g. languages, tools, practices, databases, web development, etc.) to the business of software and technology (e.g. entrepreneurship, consulting, team dynamics, etc.).
 
@@ -24,7 +24,7 @@ This full day event will bring together technology community members, students a
 
 Vermont Code Camp is free event for attendees and organized entirely by community volunteers, with the help of our sponsors. 
 
-2017 was the first year we hit a milestone of 250 attendees. With 5 rooms and a creative schedule, we are able to present 35 sessions throughout the day. Check out [last year’s schedule](https://2018.vtcodecamp.org/schedule).
+2017 was the first year we hit a milestone of 250 attendees. With 5 rooms and a creative schedule, we are able to present 35 sessions throughout the day. Check out [last year’s schedule](https://2019.vtcodecamp.org/schedule).
 
 In 2017, local television station WCAX visited the event and we are very proud of the news item [they produced and shared locally](http://www.wcax.com/content/news/A-tech-lovers-paradise-445146003.html).
 
@@ -88,6 +88,7 @@ While we keep our budget trim, we can’t pull off VT Code Camp without the fina
 
 | Year                                         | Attendees | Sessions | Speakers |
 |----------------------------------------------|:---------:|:--------:|:--------:|
+| [2019](https://2019.vtcodecamp.org)          | 194       | 35       | 39       |
 | [2018](https://2018.vtcodecamp.org)          | 230       | 35       | 34       |
 | [2017](https://2017.vtcodecamp.org)          | 250       | 34       | 34       |
 | [2016](https://2016.vtcodecamp.org)          | 194       | 37       | 35       |

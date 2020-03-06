@@ -1,6 +1,6 @@
 ---
 layout: default-layout.njk
-title:  "Attend Vermont Code Camp 11"
+title:  "Attend Vermont Code Camp 12"
 meta_description: Vermont Code Camp is a full day event that brings together technology 
                   community members, students and professionals from around Vermont and beyond.
 ---
@@ -11,7 +11,7 @@ meta_description: Vermont Code Camp is a full day event that brings together tec
         <h1>{{title}}</h1>
 
         <div class="text-large">
-            Saturday, Sept. 28, 2019 <br/>
+            {{config.eventDate | toLongDate}} <br/>
             Champlain College, Burlington, VT
         </div>
 
@@ -23,13 +23,14 @@ meta_description: Vermont Code Camp is a full day event that brings together tec
         </figure>
 
         <p>
-            The upcoming 11th annual Vermont Code Camp will be held on Saturday, 
-            September 28, 2019 in Burlington, Vermont.
+            The upcoming 12th annual Vermont Code Camp will be held on {{config.eventDate | toLongDate}} in Burlington, Vermont.
         </p>
 
-        <a href="https://www.meetup.com/VTCode/events/261093250/" class="code cta">
-            Meetup.SignUp<span class="text-muted" aria-hidden="true">();</span>
-        </a>
+        {% if config.meetupUrl %}
+            <a href="{{config.meetupUrl}}" class="code cta">
+                Meetup.SignUp<span class="text-muted" aria-hidden="true">();</span>
+            </a>
+        {% endif %}
 
         <p>
             The entire day is <b>free</b>, including morning coffee &amp; pastries, lunch 
@@ -65,6 +66,7 @@ meta_description: Vermont Code Camp is a full day event that brings together tec
         <a class="direct-link" href="#Past-Years" aria-hidden="true">#</a>
     </h2>
     <ul>
+        <li><a href="https://2019.vtcodecamp.org">2019</a></li>
         <li><a href="https://2018.vtcodecamp.org">2018</a></li>
         <li><a href="https://2017.vtcodecamp.org">2017</a></li>
         <li><a href="https://2016.vtcodecamp.org">2016</a></li>
@@ -88,7 +90,7 @@ meta_description: Vermont Code Camp is a full day event that brings together tec
             <a class="direct-link" href="#Social" aria-hidden="true">#</a>
         </h2>
         <p>Follow <a href="https://twitter.com/VTCodeCamp">@VTCodeCamp</a> for event updates.</p>
-        <p>Use the hashtag <a href="https://twitter.com/hashtag/VTCC11">#VTCC11</a> when posting about the event.</p>
+        <p>Use the hashtag <a href="https://twitter.com/hashtag/VTCC11">#VTCC12</a> when posting about the event.</p>
 
     </div>
     <div class="section-content section-content-wide">

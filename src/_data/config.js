@@ -7,6 +7,9 @@ const DEFAULT_DEV_URL = 'http://localhost:8080';
 
 module.exports = {
 
+    eventDate: '9/12/2020',
+    meetupUrl: '',
+
     /**
      * Build Context 
      * https://www.netlify.com/docs/continuous-deployment/#deploy-contexts
@@ -18,8 +21,8 @@ module.exports = {
      * Base URL (protocol, domain)
      * For when fully qualified urls are needed.  
      * https://www.netlify.com/docs/continuous-deployment/#environment-variables
-     * Values:  https://www.vtcodecamp.org | https://deploy-preview-x--vtcodecamp2019.netlify.com/ 
-     *          https://branch--vtcodecamp2019.netlify.com | http://localhost:8080 
+     * Values:  https://www.vtcodecamp.org | https://deploy-preview-x--vtcodecamp.netlify.com/ 
+     *          https://branch--vtcodecamp.netlify.com | http://localhost:8080 
      */
     baseUrl: getBaseUrl(),
 

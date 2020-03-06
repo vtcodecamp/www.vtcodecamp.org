@@ -7,6 +7,9 @@ const DEFAULT_DEV_URL = 'http://localhost:8080';
 
 module.exports = {
 
+    eventDate: 'Saturday, September 12, 2020',
+    meetupUrl: '',
+
     /**
      * Build Context 
      * https://www.netlify.com/docs/continuous-deployment/#deploy-contexts

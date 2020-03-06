@@ -150,9 +150,10 @@ nav.header a.nav-toggle {
     display: none;
 }
 
-/* Media query width depends on number of nav bar elements.  */
-/* Test and change whenever adding/removing elements.        */
-@media (max-width: 740px) {
+/* Fragile Menu Media Query  */
+/* Media query width depends on number of nav bar elements.
+   Test and change whenever adding/removing elements.        */
+@media (max-width: 449px) {
     ul.nav-buttons {
         padding: 0 2em 0 0;
     }
@@ -503,16 +504,13 @@ footer a svg {
 
 footer .nav-links {
     display: grid;
-    grid-auto-flow: column;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 0.7em;
     max-width: 380px;
 }
 @media (min-width: 500px) {
     footer .nav-links {
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
         max-width: 600px;
     }
     .nav-links li:nth-child(3), .nav-links li:nth-child(4) {

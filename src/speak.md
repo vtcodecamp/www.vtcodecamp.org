@@ -1,6 +1,6 @@
 ---
 layout: default-layout.njk
-title:  "Speak at Vermont Code Camp 11"
+title:  "Speak at Vermont Code Camp 12"
 meta_description: Vermont Code Camp needs you! Please consider submitting a speaker session proposal.
 ---
 
@@ -16,9 +16,13 @@ meta_description: Vermont Code Camp needs you! Please consider submitting a spea
 
 Vermont Code Camp needs you! Please consider submitting a speaker session proposal. You don't have to be from Vermont to attend or speak.
 
+Call For Speakers has not yet been posted. Please check back later for details or follow [@VTCodeCamp](https://twitter.com/VTCodeCamp) on twitter for updates
+
+<!-- {#
 * **CFP Deadline is now closed:** as of Sunday July 21 Midnight EST  
 * **Speaker Notifications have been sent out:** as of Monday July 29
 * **Schedule** will be built closer to the event
+#} -->
 
 Possible topics include:
 

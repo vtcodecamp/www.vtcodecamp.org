@@ -11,7 +11,7 @@ meta_description: Vermont Code Camp is a full day event that brings together tec
         <h1>{{title}}</h1>
 
         <div class="text-large">
-            {{config.eventDate}} <br/>
+            {{config.eventDate | toLongDate}} <br/>
             Champlain College, Burlington, VT
         </div>
 
@@ -23,7 +23,7 @@ meta_description: Vermont Code Camp is a full day event that brings together tec
         </figure>
 
         <p>
-            The upcoming 12th annual Vermont Code Camp will be held on {{config.eventDate}} in Burlington, Vermont.
+            The upcoming 12th annual Vermont Code Camp will be held on {{config.eventDate | toLongDate}} in Burlington, Vermont.
         </p>
 
         {% if config.meetupUrl %}

@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch'); // must be pinned to 2.x to use require syntax
 const http = require('http');
 const https = require('https');
 const sharp = require('sharp');
@@ -44,11 +44,11 @@ function parseCategories(categories) {
 
     for (let category of categories) {
         if (category.title == 'Level') {
-            for (level of category.items) {
+            for (var level of category.items) {
                 levels[level.id] = level;
             }
         } else if (category.title == 'Session format') {
-            for (format of category.items) {
+            for (var format of category.items) {
                 formats[format.id] = format;
             }
         }
@@ -73,7 +73,7 @@ function buildSpeakers(speakersData) {
                     link.name = link.url.replace(/https*:\/\/(www\.)*/gi, '')
                                         .replace(/\/?(\?.*)?$/, '')
                                         .replace(/\/.*/, '');
-                    break;       
+                    break;
             }
         }
 
@@ -96,8 +96,8 @@ function buildSpeakers(speakersData) {
  * Resize to 192px square and save as optimized jpeg file
  * Uses the Sharp node module for image manipulation
  * http://sharp.pixelplumbing.com/en/stable/
- * @param string sessionizePictureUrl 
- * @param string filename 
+ * @param string sessionizePictureUrl
+ * @param string filename
  */
 function resizeAndSaveProfilePicture(sessionizePictureUrl, filename) {
     const speakerImageDir =  `${projectRoot}/src/assets/speakers/`
@@ -106,6 +106,7 @@ function resizeAndSaveProfilePicture(sessionizePictureUrl, filename) {
         fs.mkdirSync(speakerImageDir);
     }
     https.get(sessionizePictureUrl, function (imageStream) {
+        // TODO - handle failures gracefully
         let resizeTransform = sharp()
             .resize(192, 192, { fit: 'inside', withoutEnlargement: true })
             .jpeg();

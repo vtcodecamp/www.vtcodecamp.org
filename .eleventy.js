@@ -1,4 +1,8 @@
-const moment = require("moment")
+const CleanCSS = require("clean-css");
+const markdownIt = require('markdown-it');
+const markdownItAnchor = require("markdown-it-anchor");
+const moment = require("moment");
+const pluginTOC = require('eleventy-plugin-nesting-toc');
 
 module.exports = function(eleventyConfig) {
 
@@ -8,7 +12,6 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/_redirects");
 
     // add cssmin filter
-    const CleanCSS = require("clean-css");
     eleventyConfig.addFilter("cssmin", function(code) {
         return new CleanCSS({}).minify(code).styles;
     });
@@ -18,34 +21,32 @@ module.exports = function(eleventyConfig) {
     });
 
 
-    var enable = ["normalize", "block", "inline", "linkify", "autolink", 'link', 'backticks', 'emphasis', "paragraph", "text", "newline"]
-    var md = require('markdown-it')('zero',{linkify: true}).enable(enable);
+    let minimalMarkdown = markdownIt('zero', { linkify: true })
+        .enable(["normalize", "block", "inline", "linkify", "autolink", 'link', 'backticks', 'emphasis', "paragraph", "text", "newline"]);
 
     eleventyConfig.addFilter("minimalMarkdown", function(string) {
-        return md.render(string);
+        return minimalMarkdown.render(string);
     });
 
-    eleventyConfig.addFilter("to12hourTime", function(timeString) { 
+    eleventyConfig.addFilter("to12hourTime", function(timeString) {
         let formatted = moment(timeString).format("h:mm a")
         return formatted;
     });
 
-    eleventyConfig.addFilter("toLongDate", function(date) { 
+    eleventyConfig.addFilter("toLongDate", function(date) {
         let formatted = moment(date, 'MM-DD-YYYY').format("dddd, MMM Do, YYYY")
         return formatted;
     });
 
     // set markdown defaults (inline so we can extend)
-    let markdownIt = require("markdown-it");
-    let options = {
+    let mdOptions = {
       html: true,
       breaks: true,
       linkify: true
     };
-    
+
     // add markdown anchor options
-	let markdownItAnchor = require("markdown-it-anchor");
-	let opts = {
+	let mdAnchorOptions = {
 		permalink: false,
 		slugify: function(s) {
             // strip special chars
@@ -59,10 +60,11 @@ module.exports = function(eleventyConfig) {
 		level: [1,2,3,4]
 	};
 
-    eleventyConfig.setLibrary("md", markdownIt(options).use(markdownItAnchor, opts));
-    
+    let md = markdownIt(mdOptions).use(markdownItAnchor, mdAnchorOptions)
+
+    eleventyConfig.setLibrary("md", md);
+
     // add table of contents plugin
-    const pluginTOC = require('eleventy-plugin-nesting-toc');
     eleventyConfig.addPlugin(pluginTOC);
 
     return {

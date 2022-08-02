@@ -27,7 +27,7 @@ Communities mirror the societies in which they exist and positive action is esse
 If you see someone who is making an extra effort to ensure our community is welcoming, friendly, and encourages all participants to contribute to the fullest extent, we want to know.
 
 
-## 3. Expected 
+## 3. Expected
 
 * Participate in an authentic and active way. In doing so, you contribute to the health and longevity of this community. Exercise consideration and respect in your speech and actions.
 * Attempt collaboration before conflict.
@@ -81,7 +81,7 @@ If a speaker is violating the Code of Conduct either with their words or within 
 
 ## 7. Reporting Unacceptable Behavior
 
-If you are subject to or witness unacceptable behavior, or have any other concerns, please notify an event organizer or volunteer as soon as possible. 
+If you are subject to or witness unacceptable behavior, or have any other concerns, please notify an event organizer or volunteer as soon as possible.
 
 If you are a witness to behavior that violates this Code of Conduct, we recommend you take the following actions:
   * Sit with the victim and ask, "How can I help?"
@@ -90,7 +90,7 @@ If you are a witness to behavior that violates this Code of Conduct, we recommen
 
 If there is an immediate threat present, contact 911, or the Burlington Police Department at (802) 658-2704. Additionally, the Champlain College office of Campus Public Safety can be reached at (802) 865-6465 (dial extension 6465 from any campus phone).
 
-At in-person events, organizers/volunteers can be identified by a "Volunteer" t-shirt. Outside of events, the organizers, [Julie Lerman](https://twitter.com/julielerman), [Rob Hale](https://twitter.com/rob_hale_vt), and [Maureen McElaney](https://twitter.com/Mo_Mack), can all be reached via this email at [vtcodecamp.org](mailto:team@vtcodecamp.org); **however, this email may not be monitored during in-person events, so it is important to find an organizer/volunteer at the event or call the proper authorities based on the severity of the offense.**
+At in-person events, organizers/volunteers can be identified by a "Volunteer" t-shirt. Outside of events, the organizers, [Julie Lerman](https://twitter.com/julielerman) and [Rob Hale](https://twitter.com/rob_hale_vt) can both be reached via this email at [vtcodecamp.org](mailto:team@vtcodecamp.org); **however, this email may not be monitored during in-person events, so it is important to find an organizer/volunteer at the event or call the proper authorities based on the severity of the offense.**
 
 Additionally, community organizers are available to help community members engage with local law enforcement or to otherwise help those experiencing unacceptable behavior feel safe. In the context of in-person events, organizers will also provide escorts as desired by the person experiencing distress.
 
@@ -123,9 +123,9 @@ We expect all community participants (contributors, paid or otherwise; sponsors;
 
 **At in-person events, please notify a community organizer or volunteer directly.** Organizers/volunteers can be identified by a "Volunteer" t-shirt.
 
-Email: [team@vtcodecamp.org](mailto:team@vtcodecamp.org) (This email goes to Julie, Rob and Maureen but keep in mind this email address may not be monitored during in-person events.)
+Email: [team@vtcodecamp.org](mailto:team@vtcodecamp.org) (This email goes to Julie & Rob, but keep in mind this email address may not be monitored during in-person events.)
 
-If you want to contact an individual organizer you can reach out directly to [Julie Lerman](https://twitter.com/julielerman), [Rob Hale](https://twitter.com/rob_hale_vt), or [Maureen McElaney](https://twitter.com/Mo_Mack).
+If you want to contact an individual organizer you can reach out directly to [Julie Lerman](https://twitter.com/julielerman) or [Rob Hale](https://twitter.com/rob_hale_vt).
 
 
 ## 11. License and Attribution

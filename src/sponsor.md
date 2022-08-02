@@ -20,7 +20,7 @@ This full day event will bring together technology community members, students a
     Contact Sponsorship Team
 </a>
 
-Vermont Code Camp is free event for attendees and organized entirely by community volunteers, with the help of our sponsors. 
+Vermont Code Camp is free event for attendees and organized entirely by community volunteers, with the help of our sponsors.
 
 2017 was the first year we hit a milestone of 250 attendees. With 5 rooms and a creative schedule, we are able to present 35 sessions throughout the day. Check out [last year’s schedule](https://2019.vtcodecamp.org/schedule).
 
@@ -68,7 +68,7 @@ While we keep our budget trim, we can’t pull off VT Code Camp without the fina
 * **Gold**: $500
 * **Silver**: $250
 * **Bronze**: $100
-* **Swag**: Give-away items (e.g. books, bags, items to put in attendee bags, software licenses, other raffle items, etc.)  
+* **Swag**: Give-away items (e.g. books, bags, items to put in attendee bags, software licenses, other raffle items, etc.)
 
 
 ## Key Facts
@@ -106,16 +106,16 @@ While we keep our budget trim, we can’t pull off VT Code Camp without the fina
 * Your logo and link on VTCodeCamp.org website under the relevant Sponsorship Section
 * Mention of your sponsorship in multiple emails to meetup’s 2600+ members
 * Listing in printed materials provided to event attendees
-* Placement of materials (e.g. job listings, brochures, etc) on brochure table at event  
+* Placement of materials (e.g. job listings, brochures, etc) on brochure table at event
 * For Platinum and Premier sponsors, placement of free-standing banner or logo or availability of a sponsor table at the event
 * Mention of all sponsors during opening remarks
-* Tweets mentioning designated sponsor twitter account with thanks for sponsorship from the [@VTCodeCamp](https://twitter.com/vtcodecamp) account (900+ followers) and event organizers (total over 30,000 technical followers)  
+* Tweets mentioning designated sponsor twitter account with thanks for sponsorship from the [@VTCodeCamp](https://twitter.com/vtcodecamp) account (900+ followers) and event organizers (total over 30,000 technical followers)
 
 With respect to swag, we can arrange someone to relay it the week of the event or you just bring it to the event.
 
 Thank you for your interest and support.
 
-\- *Rob Hale, Maureen McElaney, and Julie Lerman on behalf of the Vermont Code Camp team*
+\- *Rob Hale and Julie Lerman on behalf of the Vermont Code Camp team*
 
 </div>
 </section>

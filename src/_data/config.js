@@ -7,11 +7,11 @@ const DEFAULT_DEV_URL = 'http://localhost:8080';
 
 module.exports = {
 
-    eventDate: '9/12/2020',
+    eventDate: '9/24/2022',
     meetupUrl: '',
 
     /**
-     * Build Context 
+     * Build Context
      * https://www.netlify.com/docs/continuous-deployment/#deploy-contexts
      * Values:  production | deploy-preview | branch-deploy | development
      */
@@ -19,10 +19,10 @@ module.exports = {
 
     /**
      * Base URL (protocol, domain)
-     * For when fully qualified urls are needed.  
+     * For when fully qualified urls are needed.
      * https://www.netlify.com/docs/continuous-deployment/#environment-variables
-     * Values:  https://www.vtcodecamp.org | https://deploy-preview-x--vtcodecamp.netlify.com/ 
-     *          https://branch--vtcodecamp.netlify.com | http://localhost:8080 
+     * Values:  https://www.vtcodecamp.org | https://deploy-preview-x--vtcodecamp.netlify.com/
+     *          https://branch--vtcodecamp.netlify.com | http://localhost:8080
      */
     baseUrl: getBaseUrl(),
 
@@ -34,7 +34,7 @@ module.exports = {
     baseUrlCanonical: (URL) ? URL : DEFAULT_DEV_URL,
 
     /**
-     * Meta robots tag 
+     * Meta robots tag
      * To prevent search engines indexing deploy preview and branch builds on Netlify
      */
     metaRobots: (CONTEXT == 'production') ? 'INDEX,FOLLOW' : 'NOINDEX,NOFOLLOW',

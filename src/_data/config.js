@@ -8,7 +8,7 @@ const DEFAULT_DEV_URL = 'http://localhost:8080';
 module.exports = {
 
     eventDate: '9/24/2022',
-    meetupUrl: '',
+    meetupUrl: 'https://www.meetup.com/vtcode/events/287595613/',
 
     /**
      * Build Context

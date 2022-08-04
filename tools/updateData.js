@@ -1,17 +1,18 @@
 const path = require('path');
 const fs = require('fs');
 const fetch = require('node-fetch'); // must be pinned to 2.x to use require syntax
-const http = require('http');
 const https = require('https');
 const sharp = require('sharp');
 
 const projectRoot = path.normalize(__dirname);
 
+const SESSIONIZE_URL = 'https://sessionize.com/api/v2/rffu883w/view/all'
+
 module.exports = updateData();
 
 async function updateData()
 {
-    const response = await fetch('https://sessionize.com/api/v2/rffu883w/view/all');
+    const response = await fetch(SESSIONIZE_URL);
     const sessionize = await response.json();
 
     const speakers = buildSpeakers(sessionize.speakers);

@@ -1,22 +1,26 @@
 const path = require('path');
-const fs = require('fs');
-const fetch = require('node-fetch'); // must be pinned to 2.x to use require syntax
-const https = require('https');
-const sharp = require('sharp');
+const fs = require('fs').promises;
+const got = require("got"); // must be pinned to 11.8.5 to use CJS Require  syntax
+const { resizeAndSaveProfilePictures } = require('./update-photos')
 
-const projectRoot = path.normalize(__dirname);
-
+const PROJECT_ROOT_PATH = path.join(__dirname, "..");
+const DATA_PATH = `${PROJECT_ROOT_PATH}/src/_data/`;
 const SESSIONIZE_URL = 'https://sessionize.com/api/v2/rffu883w/view/all'
+
 
 module.exports = updateData();
 
 async function updateData()
 {
-    const response = await fetch(SESSIONIZE_URL);
-    const sessionize = await response.json();
+    const sessionize = await got(SESSIONIZE_URL).json();
 
+    // early terminate if not forced and has data loss
+    if (!process.env.FORCE && await checkDataLoss(sessionize)) {
+        return;
+    }
+
+    const [levels, formats] = buildCategories(sessionize.categories);
     const speakers = buildSpeakers(sessionize.speakers);
-    const [levels, formats] = parseCategories(sessionize.categories);
     const sessions = buildSessions(sessionize.sessions, levels, formats);
     const rooms = flattenArrayToObj(sessionize.rooms);
 
@@ -33,13 +37,47 @@ async function updateData()
         })
     }
 
-    writeDataFile('sessions.json', sessions);
-    writeDataFile('speakers.json', speakers);
-    writeDataFile('rooms.json', rooms);
+    // write files
+    await Promise.all([
+        // stored as object for easier lookup
+        writeDataFile('sessions.json', sessions),
+        writeDataFile('speakers.json', speakers),
+        writeDataFile('rooms.json', rooms),
+    ])
+
+    // save photos
+    await resizeAndSaveProfilePictures(speakers);
+}
+
+async function checkDataLoss(sessionize) {
+    const [sessions, speakers] = await Promise.all([
+        readDataFile('sessions.json'),
+        readDataFile('speakers.json'),
+    ])
+
+    const missingSpeakers = Object.keys(sessions).length - sessionize.sessions.length
+    const missingSessions = Object.keys(speakers).length - sessionize.speakers.length
+
+    const messages = []
+    if (missingSpeakers > 0) { messages.push(`${missingSpeakers} speaker(s)`) }
+    if (missingSessions > 0) { messages.push(`${missingSessions} sessions(s)`)}
+
+    if (messages.length) {
+        console.warn(
+`WARNING: You are about to lose ${messages.join(" and ")}
+If you wish to proceed, please manually run
+\`npm run update-data:force\`
+and commit the changes
+`)
+        return true
+    }
+
+    return false
+
 }
 
 
-function parseCategories(categories) {
+function buildCategories(categories) {
     var levels = {};
     var formats = {};
 
@@ -85,35 +123,10 @@ function buildSpeakers(speakersData) {
         if (speaker.profilePicture) {
             let profilePictureFilename = speaker.slug + '.jpg';
             speaker.localProfilePicture = `/assets/speakers/${profilePictureFilename}`;
-            resizeAndSaveProfilePicture(speaker.profilePicture, profilePictureFilename);
         }
     }
 
     return flattenArrayToObj(speakersData)
-}
-
-/**
- * Download profile speaker profile picture from Sessionize
- * Resize to 192px square and save as optimized jpeg file
- * Uses the Sharp node module for image manipulation
- * http://sharp.pixelplumbing.com/en/stable/
- * @param string sessionizePictureUrl
- * @param string filename
- */
-function resizeAndSaveProfilePicture(sessionizePictureUrl, filename) {
-    const speakerImageDir =  `${projectRoot}/src/assets/speakers/`
-    const savePath =  speakerImageDir + filename;
-    if (!fs.existsSync(speakerImageDir)) {
-        fs.mkdirSync(speakerImageDir);
-    }
-    https.get(sessionizePictureUrl, function (imageStream) {
-        // TODO - handle failures gracefully
-        let resizeTransform = sharp()
-            .resize(192, 192, { fit: 'inside', withoutEnlargement: true })
-            .jpeg();
-        let writeStream = fs.createWriteStream(savePath);
-        imageStream.pipe(resizeTransform).pipe(writeStream);
-    })
 }
 
 
@@ -138,15 +151,27 @@ function buildSessions(sessionsData, levels, formats) {
 
 
 
-function writeDataFile(filename, object) {
-
-    let filePath = `${projectRoot}/src/_data/${filename}`;
+async function writeDataFile(filename, object) {
+    let filePath = `${DATA_PATH}${filename}`;
     let content = JSON.stringify(object, null, 4);
 
-    fs.writeFile(filePath, content, function(err) {
-        if(err) { return console.log(err); }
+    try {
+        await fs.writeFile(filePath, content, 'utf8')
         console.log(`Sessionize data written to ${filePath}`);
-    });
+    } catch (error) {
+        return console.log(err);
+    }
+}
+
+async function readDataFile(filename) {
+    let filePath = `${DATA_PATH}${filename}`;
+
+    try {
+        const file = await fs.readFile(filePath, 'utf8')
+        return JSON.parse(file)
+    } catch (error) {
+        return {}
+    }
 }
 
 function flattenArrayToObj(array) {

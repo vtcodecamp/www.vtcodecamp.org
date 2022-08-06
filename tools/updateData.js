@@ -1,12 +1,15 @@
 const path = require('path');
-const fs = require('fs');
+const fsSync = require('fs');
+const fs = fsSync.promises;
 const fetch = require('node-fetch'); // must be pinned to 2.x to use require syntax
 const https = require('https');
 const sharp = require('sharp');
 
-const projectRoot = path.normalize(__dirname);
-
 const SESSIONIZE_URL = 'https://sessionize.com/api/v2/rffu883w/view/all'
+const PROJECT_ROOT_PATH = path.join(__dirname, "..");
+const SPEAKER_IMAGE_PATH = `${PROJECT_ROOT_PATH}/src/assets/speakers/`
+const DATA_PATH = `${PROJECT_ROOT_PATH}/src/_data/`;
+
 
 module.exports = updateData();
 
@@ -14,6 +17,9 @@ async function updateData()
 {
     const response = await fetch(SESSIONIZE_URL);
     const sessionize = await response.json();
+
+    // make sure we have profile dir
+    await fs.mkdir(SPEAKER_IMAGE_PATH, {recursive: true});
 
     const speakers = buildSpeakers(sessionize.speakers);
     const [levels, formats] = parseCategories(sessionize.categories);
@@ -101,17 +107,15 @@ function buildSpeakers(speakersData) {
  * @param string filename
  */
 function resizeAndSaveProfilePicture(sessionizePictureUrl, filename) {
-    const speakerImageDir =  `${projectRoot}/src/assets/speakers/`
-    const savePath =  speakerImageDir + filename;
-    if (!fs.existsSync(speakerImageDir)) {
-        fs.mkdirSync(speakerImageDir);
-    }
+
+    const savePath =  SPEAKER_IMAGE_PATH + filename;
+
     https.get(sessionizePictureUrl, function (imageStream) {
         // TODO - handle failures gracefully
         let resizeTransform = sharp()
             .resize(192, 192, { fit: 'inside', withoutEnlargement: true })
             .jpeg();
-        let writeStream = fs.createWriteStream(savePath);
+        let writeStream = fsSync.createWriteStream(savePath);
         imageStream.pipe(resizeTransform).pipe(writeStream);
     })
 }
@@ -138,15 +142,17 @@ function buildSessions(sessionsData, levels, formats) {
 
 
 
-function writeDataFile(filename, object) {
+async function writeDataFile(filename, object) {
 
-    let filePath = `${projectRoot}/src/_data/${filename}`;
+    let filePath = `${DATA_PATH}${filename}`;
     let content = JSON.stringify(object, null, 4);
 
-    fs.writeFile(filePath, content, function(err) {
-        if(err) { return console.log(err); }
+    try {
+        await fs.writeFile(filePath, content)
         console.log(`Sessionize data written to ${filePath}`);
-    });
+    } catch (error) {
+        return console.log(err);
+    }
 }
 
 function flattenArrayToObj(array) {

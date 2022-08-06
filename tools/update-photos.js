@@ -15,7 +15,7 @@ async function resizeAndSaveProfilePictures(speakers) {
         // make sure we have profile dir
         await fs.mkdir(SPEAKER_IMAGE_PATH, {recursive: true});
 
-        const transforms = Object.values(speakers).map(speaker => {
+        const transforms = Object.values(speakers).filter(s => Boolean(s.profilePicture)).map(speaker => {
             return resizeAndSaveProfilePicture(speaker.profilePicture, `${speaker.slug}.jpg`)
         })
 
@@ -24,7 +24,7 @@ async function resizeAndSaveProfilePictures(speakers) {
     } catch (error) {
         console.log(error);
     }
-    // todo - execution not returned
+
     console.log("Finished processing photos")
 }
 
@@ -52,15 +52,24 @@ async function resizeAndSaveProfilePicture(sessionizePictureUrl, filename) {
         .jpeg()
         .toFile(savePath)
 
-    got
-        .stream(sessionizePictureUrl)
-        .on('error', (_err) => console.error(`Error fetching ${sessionizePictureUrl}`))
-        .pipe(sharpStream);
 
     try {
-        const _result = await prom
-        console.log(`Saved ${filename}`);
+        await new Promise(async (resolve, reject) => {
+            got
+                .stream(sessionizePictureUrl)
+                .on('error', (err) => {
+                    console.error(`Error fetching ${sessionizePictureUrl}`)
+                    // silently fail, don't reject
+                    resolve(err)
+                })
+                .pipe(sharpStream);
+
+            const result = await prom
+            console.log(`Saved ${filename}`);
+            resolve(result)
+        })
+
     } catch (error) {
-        console.error(error)
+        console.error(`Error transforming ${filename}`)
     }
 }

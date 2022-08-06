@@ -3,10 +3,9 @@ const fs = require('fs').promises;
 const got = require("got"); // must be pinned to 11.8.5 to use CJS Require  syntax
 const { resizeAndSaveProfilePictures } = require('./update-photos')
 
-const SESSIONIZE_URL = 'https://sessionize.com/api/v2/rffu883w/view/all'
 const PROJECT_ROOT_PATH = path.join(__dirname, "..");
-const SPEAKER_IMAGE_PATH = `${PROJECT_ROOT_PATH}/src/assets/speakers/`
 const DATA_PATH = `${PROJECT_ROOT_PATH}/src/_data/`;
+const SESSIONIZE_URL = 'https://sessionize.com/api/v2/rffu883w/view/all'
 
 
 module.exports = updateData();
@@ -15,11 +14,8 @@ async function updateData()
 {
     const sessionize = await got(SESSIONIZE_URL).json();
 
-    // make sure we have profile dir
-    await fs.mkdir(SPEAKER_IMAGE_PATH, {recursive: true});
-
+    const [levels, formats] = buildCategories(sessionize.categories);
     const speakers = buildSpeakers(sessionize.speakers);
-    const [levels, formats] = parseCategories(sessionize.categories);
     const sessions = buildSessions(sessionize.sessions, levels, formats);
     const rooms = flattenArrayToObj(sessionize.rooms);
 
@@ -36,16 +32,20 @@ async function updateData()
         })
     }
 
+    // write files
+    await Promise.all([
+        // stored as object for easier lookup
+        writeDataFile('sessions.json', sessions),
+        writeDataFile('speakers.json', speakers),
+        writeDataFile('rooms.json', rooms),
+    ])
 
-    await writeDataFile('sessions.json', sessions);
-    await writeDataFile('speakers.json', speakers);
-    await writeDataFile('rooms.json', rooms);
-
+    // save photos
     await resizeAndSaveProfilePictures(speakers);
 }
 
 
-function parseCategories(categories) {
+function buildCategories(categories) {
     var levels = {};
     var formats = {};
 

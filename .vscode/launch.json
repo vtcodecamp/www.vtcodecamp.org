@@ -2,16 +2,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch 11ty",
             "type": "node",
             "request": "launch",
-            "name": "Launch 11ty",
             "program": "${workspaceFolder}/node_modules/@11ty/eleventy/cmd.js",
             "args": [],
         },
         {
+            "name": "Launch Update Data",
             "type": "node",
             "request": "launch",
-            "name": "Launch Update Data",
             "program": "${workspaceFolder}/tools/updateData.js",
         }
     ]

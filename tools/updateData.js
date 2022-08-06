@@ -1,9 +1,7 @@
 const path = require('path');
-const fsSync = require('fs');
-const fs = fsSync.promises;
-const fetch = require('node-fetch'); // must be pinned to 2.x to use require syntax
-const https = require('https');
-const sharp = require('sharp');
+const fs = require('fs').promises;
+const got = require("got"); // must be pinned to 11.8.5 to use CJS Require  syntax
+const { resizeAndSaveProfilePictures } = require('./updatePhotos')
 
 const SESSIONIZE_URL = 'https://sessionize.com/api/v2/rffu883w/view/all'
 const PROJECT_ROOT_PATH = path.join(__dirname, "..");
@@ -15,8 +13,7 @@ module.exports = updateData();
 
 async function updateData()
 {
-    const response = await fetch(SESSIONIZE_URL);
-    const sessionize = await response.json();
+    const sessionize = await got(SESSIONIZE_URL).json();
 
     // make sure we have profile dir
     await fs.mkdir(SPEAKER_IMAGE_PATH, {recursive: true});
@@ -39,9 +36,12 @@ async function updateData()
         })
     }
 
-    writeDataFile('sessions.json', sessions);
-    writeDataFile('speakers.json', speakers);
-    writeDataFile('rooms.json', rooms);
+
+    await writeDataFile('sessions.json', sessions);
+    await writeDataFile('speakers.json', speakers);
+    await writeDataFile('rooms.json', rooms);
+
+    await resizeAndSaveProfilePictures(speakers);
 }
 
 
@@ -91,33 +91,10 @@ function buildSpeakers(speakersData) {
         if (speaker.profilePicture) {
             let profilePictureFilename = speaker.slug + '.jpg';
             speaker.localProfilePicture = `/assets/speakers/${profilePictureFilename}`;
-            resizeAndSaveProfilePicture(speaker.profilePicture, profilePictureFilename);
         }
     }
 
     return flattenArrayToObj(speakersData)
-}
-
-/**
- * Download profile speaker profile picture from Sessionize
- * Resize to 192px square and save as optimized jpeg file
- * Uses the Sharp node module for image manipulation
- * http://sharp.pixelplumbing.com/en/stable/
- * @param string sessionizePictureUrl
- * @param string filename
- */
-function resizeAndSaveProfilePicture(sessionizePictureUrl, filename) {
-
-    const savePath =  SPEAKER_IMAGE_PATH + filename;
-
-    https.get(sessionizePictureUrl, function (imageStream) {
-        // TODO - handle failures gracefully
-        let resizeTransform = sharp()
-            .resize(192, 192, { fit: 'inside', withoutEnlargement: true })
-            .jpeg();
-        let writeStream = fsSync.createWriteStream(savePath);
-        imageStream.pipe(resizeTransform).pipe(writeStream);
-    })
 }
 
 

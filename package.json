@@ -7,6 +7,7 @@
     "build": "npx eleventy",
     "serve": "npx eleventy --serve",
     "update-data": "node tools/update-data.js",
+    "update-data:force": "npx cross-env FORCE=true node tools/update-data.js",
     "update-and-build": "npm run update-data && npm run build"
   },
   "dependencies": {

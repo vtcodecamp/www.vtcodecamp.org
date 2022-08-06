@@ -14,6 +14,11 @@ async function updateData()
 {
     const sessionize = await got(SESSIONIZE_URL).json();
 
+    // early terminate if not forced and has data loss
+    if (!process.env.FORCE && await checkDataLoss(sessionize)) {
+        return;
+    }
+
     const [levels, formats] = buildCategories(sessionize.categories);
     const speakers = buildSpeakers(sessionize.speakers);
     const sessions = buildSessions(sessionize.sessions, levels, formats);
@@ -42,6 +47,33 @@ async function updateData()
 
     // save photos
     await resizeAndSaveProfilePictures(speakers);
+}
+
+async function checkDataLoss(sessionize) {
+    const [sessions, speakers] = await Promise.all([
+        readDataFile('sessions.json'),
+        readDataFile('speakers.json'),
+    ])
+
+    const missingSpeakers = Object.keys(sessions).length - sessionize.sessions.length
+    const missingSessions = Object.keys(speakers).length - sessionize.speakers.length
+
+    const messages = []
+    if (missingSpeakers > 0) { messages.push(`${missingSpeakers} speaker(s)`) }
+    if (missingSessions > 0) { messages.push(`${missingSessions} sessions(s)`)}
+
+    if (messages.length) {
+        console.warn(
+`WARNING: You are about to lose ${messages.join(" and ")}
+If you wish to proceed, please manually run
+\`npm run update-data:force\`
+and commit the changes
+`)
+        return true
+    }
+
+    return false
+
 }
 
 
@@ -120,15 +152,25 @@ function buildSessions(sessionsData, levels, formats) {
 
 
 async function writeDataFile(filename, object) {
-
     let filePath = `${DATA_PATH}${filename}`;
     let content = JSON.stringify(object, null, 4);
 
     try {
-        await fs.writeFile(filePath, content)
+        await fs.writeFile(filePath, content, 'utf8')
         console.log(`Sessionize data written to ${filePath}`);
     } catch (error) {
         return console.log(err);
+    }
+}
+
+async function readDataFile(filename) {
+    let filePath = `${DATA_PATH}${filename}`;
+
+    try {
+        const file = await fs.readFile(filePath, 'utf8')
+        return JSON.parse(file)
+    } catch (error) {
+        return {}
     }
 }
 

@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs').promises;
 const got = require("got"); // must be pinned to 11.8.5 to use CJS Require  syntax
-const { resizeAndSaveProfilePictures } = require('./updatePhotos')
+const { resizeAndSaveProfilePictures } = require('./update-photos')
 
 const SESSIONIZE_URL = 'https://sessionize.com/api/v2/rffu883w/view/all'
 const PROJECT_ROOT_PATH = path.join(__dirname, "..");
